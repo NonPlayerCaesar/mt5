@@ -1,0 +1,1702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Comprehensive MetaTrader 5 (MT5) tutorials and guides for traders. Learn how to use MT5 platform, trading strategies, and advanced features.">
+    <meta name="keywords" content="MetaTrader 5, MT5, trading platform, forex trading, trading tutorials, trading strategies">
+    <meta name="author" content="MetaTrader 5 Tutorials">
+    <title>MetaTrader 5 (MT5) Tutorials | Comprehensive Trading Platform Guide</title>
+    <style>
+        :root {
+            --primary-color: #37352f;
+            --secondary-color: #2563eb;
+            --accent-color: #f3f4f6;
+            --text-color: #37352f;
+            --text-light: #787774;
+            --background: #ffffff;
+            --background-alt: #f8f9fa;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background);
+            color: var(--text-color);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .header {
+            background: var(--background);
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 60px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .header p {
+            font-size: 1.3em;
+            color: var(--text-light);
+            margin: 0;
+        }
+
+        .language-selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .language-button {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+        }
+
+        .language-button:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        .content-section {
+            margin-bottom: 80px;
+            background: var(--background);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .content-section h2 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--primary-color);
+        }
+
+        .content-section h3 {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin: 50px 0 30px;
+            color: var(--primary-color);
+        }
+
+        .content-section p {
+            font-size: 1.15em;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 25px;
+        }
+
+        .content-section ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 25px 0;
+        }
+
+        .content-section li {
+            padding: 15px 0;
+            color: var(--text-color);
+            position: relative;
+            padding-left: 30px;
+            font-size: 1.15em;
+            line-height: 1.6;
+        }
+
+        .content-section li:before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .download-section {
+            background: var(--accent-color);
+            padding: 50px;
+            border-radius: 12px;
+            margin-bottom: 50px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .download-button {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.2em;
+            box-shadow: 0 2px 4px rgba(37, 99, 235, 0.2);
+        }
+
+        .download-button:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.3);
+        }
+
+        .resource-link {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: #1d4ed8;
+            text-decoration: underline;
+        }
+
+        .step {
+            margin-bottom: 40px;
+            padding-left: 25px;
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .step-title {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3em;
+        }
+
+        .step-description {
+            color: var(--text-color);
+            margin-bottom: 20px;
+            font-size: 1.15em;
+            line-height: 1.6;
+        }
+
+        .note {
+            background: var(--accent-color);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+            border-left: 4px solid var(--secondary-color);
+            font-size: 1.1em;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+
+            .header {
+                padding: 40px 0;
+            }
+
+            .header h1 {
+                font-size: 2.2em;
+            }
+
+            .content-section h2 {
+                font-size: 1.8em;
+            }
+
+            .content-section h3 {
+                font-size: 1.4em;
+            }
+
+            .download-section {
+                padding: 30px 20px;
+            }
+        }
+
+        .language-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: var(--background);
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            z-index: 1;
+            margin-top: 5px;
+        }
+
+        .language-dropdown-content a {
+            color: var(--text-color);
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: all 0.3s ease;
+        }
+
+        .language-dropdown-content a:hover {
+            background-color: var(--accent-color);
+            color: var(--secondary-color);
+        }
+
+        .language-dropdown:hover .language-dropdown-content {
+            display: block;
+        }
+
+        .language-dropdown:hover .language-button {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="language-selector">
+            <div class="language-dropdown">
+                <button class="language-button" id="language-button">English</button>
+                <div class="language-dropdown-content">
+                    <a href="#" data-lang="en">English</a>
+                    <a href="#" data-lang="de">Deutsch</a>
+                    <a href="#" data-lang="ja">日本語</a>
+                    <a href="#" data-lang="it">Italiano</a>
+                    <a href="#" data-lang="es">Español</a>
+                    <a href="#" data-lang="ko">한국어</a>
+                    <a href="#" data-lang="nl">Nederlands</a>
+                    <a href="#" data-lang="pt">Português</a>
+                    <a href="#" data-lang="vi">Tiếng Việt</a>
+                </div>
+            </div>
+        </div>
+        <h1 data-translate="title">MetaTrader 5 (MT5) Tutorials</h1>
+        <p data-translate="subtitle">Comprehensive trading platform for all markets</p>
+    </header>
+
+    <div class="container">
+        <section class="download-section">
+            <h2 data-translate="downloadTitle">Download MetaTrader 5</h2>
+            <p data-translate="downloadSteps">Follow these steps to download and install MetaTrader 5:</p>
+            <div class="step">
+                <div class="step-title" data-translate="step1Title">Step 1: Visit the Official Website</div>
+                <div class="step-description" data-translate="step1Desc">Go to the official MetaTrader 5 website or your broker's platform download page.</div>
+            </div>
+            <div class="step">
+                <div class="step-title" data-translate="step2Title">Step 2: Choose Your Platform</div>
+                <div class="step-description" data-translate="step2Desc">Select the appropriate version for your operating system (Windows/Mac).</div>
+                <div class="note" data-translate="step2Note">Note: Mac users may need to use additional software like Wine or CrossOver for optimal performance.</div>
+            </div>
+            <div class="step">
+                <div class="step-title" data-translate="step3Title">Step 3: Download and Install</div>
+                <div class="step-description" data-translate="step3Desc">Run the installer and follow the setup wizard. Accept the license agreement and choose your installation location.</div>
+            </div>
+            <a href="https://www.mcmarkets.com/en-US/MT5Platform" class="download-button" data-translate="downloadButton">Download MetaTrader 5</a>
+        </section>
+
+        <section class="content-section">
+            <h2 data-translate="gettingStarted">Getting Started with MT5</h2>
+            <h3 data-translate="installation">Installation and Setup</h3>
+            <div class="step">
+                <div class="step-title" data-translate="setupStep1Title">Step 1: Initial Setup</div>
+                <div class="step-description" data-translate="setupStep1Desc">After installation, launch MT5 and create a new account:</div>
+                <ul>
+                    <li data-translate="setupStep1List1">Click 'File' > 'Open an Account'</li>
+                    <li data-translate="setupStep1List2">Choose between demo or live account</li>
+                    <li data-translate="setupStep1List3">Fill in your personal information</li>
+                    <li data-translate="setupStep1List4">Set your trading preferences</li>
+                </ul>
+            </div>
+            <div class="step">
+                <div class="step-title" data-translate="setupStep2Title">Step 2: Platform Configuration</div>
+                <div class="step-description" data-translate="setupStep2Desc">Configure your trading environment:</div>
+                <ul>
+                    <li data-translate="setupStep2List1">Set your preferred language (Tools > Options > Language)</li>
+                    <li data-translate="setupStep2List2">Configure chart settings (right-click chart > Properties)</li>
+                    <li data-translate="setupStep2List3">Set up notifications (Tools > Options > Notifications)</li>
+                    <li data-translate="setupStep2List4">Customize toolbar (right-click toolbar > Customize)</li>
+                </ul>
+            </div>
+
+            <h3 data-translate="basicNavigation">Basic Navigation</h3>
+            <div class="step">
+                <div class="step-title" data-translate="navStep1Title">Step 1: Market Watch Window</div>
+                <div class="step-description" data-translate="navStep1Desc">Access the Market Watch window (Ctrl+M):</div>
+                <ul>
+                    <li data-translate="navStep1List1">View available trading instruments</li>
+                    <li data-translate="navStep1List2">Add/remove symbols from your watchlist</li>
+                    <li data-translate="navStep1List3">View bid/ask prices and spreads</li>
+                    <li data-translate="navStep1List4">Access symbol properties and specifications</li>
+                </ul>
+            </div>
+            <div class="step">
+                <div class="step-title" data-translate="navStep2Title">Step 2: Navigator Panel</div>
+                <div class="step-description" data-translate="navStep2Desc">Use the Navigator panel (Ctrl+N):</div>
+                <ul>
+                    <li data-translate="navStep2List1">Access your trading accounts</li>
+                    <li data-translate="navStep2List2">Manage indicators and Expert Advisors</li>
+                    <li data-translate="navStep2List3">Access scripts and custom indicators</li>
+                    <li data-translate="navStep2List4">View your trading history</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 data-translate="tradingFeatures">Trading Features</h2>
+            <h3 data-translate="orderTypes">Order Types</h3>
+            <div class="step">
+                <div class="step-title" data-translate="tradingStep1Title">Step 1: Market Orders</div>
+                <div class="step-description" data-translate="tradingStep1Desc">Execute instant trades:</div>
+                <ul>
+                    <li data-translate="tradingStep1List1">Click 'New Order' or press F9</li>
+                    <li data-translate="tradingStep1List2">Select your trading instrument</li>
+                    <li data-translate="tradingStep1List3">Choose order volume (lot size)</li>
+                    <li data-translate="tradingStep1List4">Set Stop Loss and Take Profit levels</li>
+                    <li data-translate="tradingStep1List5">Click 'Buy' or 'Sell' to execute</li>
+                </ul>
+            </div>
+            <div class="step">
+                <div class="step-title" data-translate="tradingStep2Title">Step 2: Pending Orders</div>
+                <div class="step-description" data-translate="tradingStep2Desc">Set up pending orders:</div>
+                <ul>
+                    <li data-translate="tradingStep2List1">Select 'Pending Order' type</li>
+                    <li data-translate="tradingStep2List2">Choose between Buy Stop, Sell Stop, Buy Limit, or Sell Limit</li>
+                    <li data-translate="tradingStep2List3">Set your entry price</li>
+                    <li data-translate="tradingStep2List4">Define expiration time (optional)</li>
+                    <li data-translate="tradingStep2List5">Set Stop Loss and Take Profit levels</li>
+                </ul>
+            </div>
+
+            <h3 data-translate="chartAnalysis">Chart Analysis</h3>
+            <div class="step">
+                <div class="step-title" data-translate="chartStep1Title">Step 1: Chart Setup</div>
+                <div class="step-description" data-translate="chartStep1Desc">Configure your charts:</div>
+                <ul>
+                    <li data-translate="chartStep1List1">Choose chart type (Candlestick, Bar, Line)</li>
+                    <li data-translate="chartStep1List2">Select timeframe (M1 to Monthly)</li>
+                    <li data-translate="chartStep1List3">Add technical indicators</li>
+                    <li data-translate="chartStep1List4">Customize chart appearance</li>
+                </ul>
+            </div>
+            <div class="step">
+                <div class="step-title" data-translate="chartStep2Title">Step 2: Technical Analysis</div>
+                <div class="step-description" data-translate="chartStep2Desc">Perform technical analysis:</div>
+                <ul>
+                    <li data-translate="chartStep2List1">Add trend indicators (Moving Averages, MACD)</li>
+                    <li data-translate="chartStep2List2">Use oscillators (RSI, Stochastic)</li>
+                    <li data-translate="chartStep2List3">Apply Fibonacci tools</li>
+                    <li data-translate="chartStep2List4">Draw support/resistance levels</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 data-translate="advancedFeatures">Advanced Features</h2>
+            <h3 data-translate="expertAdvisors">Expert Advisors (EAs)</h3>
+            <div class="step">
+                <div class="step-title" data-translate="eaStep1Title">Step 1: EA Installation</div>
+                <div class="step-description" data-translate="eaStep1Desc">Install and configure EAs:</div>
+                <ul>
+                    <li data-translate="eaStep1List1">Copy EA files to the Experts folder</li>
+                    <li data-translate="eaStep1List2">Restart MT5 or refresh Navigator</li>
+                    <li data-translate="eaStep1List3">Drag EA to a chart</li>
+                    <li data-translate="eaStep1List4">Configure parameters and settings</li>
+                </ul>
+            </div>
+            <div class="step">
+                <div class="step-title" data-translate="eaStep2Title">Step 2: EA Testing</div>
+                <div class="step-description" data-translate="eaStep2Desc">Test your EAs:</div>
+                <ul>
+                    <li data-translate="eaStep2List1">Use Strategy Tester (Ctrl+R)</li>
+                    <li data-translate="eaStep2List2">Select testing period</li>
+                    <li data-translate="eaStep2List3">Choose testing mode (Every tick, Control points)</li>
+                    <li data-translate="eaStep2List4">Analyze test results</li>
+                </ul>
+            </div>
+
+            <h3 data-translate="customIndicators">Custom Indicators</h3>
+            <div class="step">
+                <div class="step-title" data-translate="indicatorStep1Title">Step 1: Indicator Development</div>
+                <div class="step-description" data-translate="indicatorStep1Desc">Create custom indicators:</div>
+                <ul>
+                    <li data-translate="indicatorStep1List1">Open MetaEditor (F4)</li>
+                    <li data-translate="indicatorStep1List2">Create new indicator file</li>
+                    <li data-translate="indicatorStep1List3">Write indicator code in MQL5</li>
+                    <li data-translate="indicatorStep1List4">Compile and test the indicator</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="content-section">
+            <h2 data-translate="educationalResources">Educational Resources</h2>
+            <ul>
+                <li><a href="https://www.mcmarkets.com/en-US/learn/index?utm_source=mini_site&utm_medium=mt5tutorial&utm_campaign=learning" class="resource-link" target="_blank" data-translate="resourceLink1">MC Markets Learning Center</a> - <span data-translate="resourceDesc1">Comprehensive trading education and market analysis</span></li>
+                <li><a href="https://www.metatrader5.com/en/terminal/help" class="resource-link" target="_blank" data-translate="resourceLink2">MetaTrader 5 Official Documentation</a> - <span data-translate="resourceDesc2">Complete platform documentation and guides</span></li>
+                <li><a href="https://www.mql5.com/en" class="resource-link" target="_blank" data-translate="resourceLink3">MQL5 Community Forum</a> - <span data-translate="resourceDesc3">Expert discussions and code examples</span></li>
+                <li><a href="https://www.forexfactory.com/" class="resource-link" target="_blank" data-translate="resourceLink4">Forex Factory</a> - <span data-translate="resourceDesc4">Trading news and economic calendar</span></li>
+                <li><a href="https://www.tradingview.com/ideas/" class="resource-link" target="_blank" data-translate="resourceLink5">TradingView Analysis</a> - <span data-translate="resourceDesc5">Technical analysis and trading ideas</span></li>
+                <li><a href="https://www.babypips.com/learn/forex" class="resource-link" target="_blank" data-translate="resourceLink6">Babypips Trading Course</a> - <span data-translate="resourceDesc6">Free forex trading education</span></li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        // Language mapping for display names
+        const languageNames = {
+            en: "English",
+            de: "Deutsch",
+            ja: "日本語",
+            it: "Italiano",
+            es: "Español",
+            ko: "한국어",
+            nl: "Nederlands",
+            pt: "Português",
+            vi: "Tiếng Việt"
+        };
+
+        const translations = {
+            en: {
+                title: "MetaTrader 5 (MT5) Tutorials",
+                subtitle: "Comprehensive trading platform for all markets",
+                gettingStarted: "Getting Started with MT5",
+                installation: "Installation and Setup",
+                basicNavigation: "Basic Navigation",
+                tradingFeatures: "Trading Features",
+                orderTypes: "Order Types",
+                chartAnalysis: "Chart Analysis",
+                advancedFeatures: "Advanced Features",
+                expertAdvisors: "Expert Advisors (EAs)",
+                customIndicators: "Custom Indicators",
+                platformComparison: "Platform Comparison",
+                educationalResources: "Educational Resources",
+                // Content translations
+                downloadTitle: "Download MetaTrader 5",
+                downloadSteps: "Follow these steps to download and install MetaTrader 5:",
+                step1Title: "Step 1: Visit the Official Website",
+                step1Desc: "Go to the official MetaTrader 5 website or your broker's platform download page.",
+                step2Title: "Step 2: Choose Your Platform",
+                step2Desc: "Select the appropriate version for your operating system (Windows/Mac).",
+                step2Note: "Note: Mac users may need to use additional software like Wine or CrossOver for optimal performance.",
+                step3Title: "Step 3: Download and Install",
+                step3Desc: "Run the installer and follow the setup wizard. Accept the license agreement and choose your installation location.",
+                downloadButton: "Download MetaTrader 5",
+                // Getting Started content
+                setupStep1Title: "Step 1: Initial Setup",
+                setupStep1Desc: "After installation, launch MT5 and create a new account:",
+                setupStep1List1: "Click 'File' > 'Open an Account'",
+                setupStep1List2: "Choose between demo or live account",
+                setupStep1List3: "Fill in your personal information",
+                setupStep1List4: "Set your trading preferences",
+                setupStep2Title: "Step 2: Platform Configuration",
+                setupStep2Desc: "Configure your trading environment:",
+                setupStep2List1: "Set your preferred language (Tools > Options > Language)",
+                setupStep2List2: "Configure chart settings (right-click chart > Properties)",
+                setupStep2List3: "Set up notifications (Tools > Options > Notifications)",
+                setupStep2List4: "Customize toolbar (right-click toolbar > Customize)",
+                // Navigation content
+                navStep1Title: "Step 1: Market Watch Window",
+                navStep1Desc: "Access the Market Watch window (Ctrl+M):",
+                navStep1List1: "View available trading instruments",
+                navStep1List2: "Add/remove symbols from your watchlist",
+                navStep1List3: "View bid/ask prices and spreads",
+                navStep1List4: "Access symbol properties and specifications",
+                navStep2Title: "Step 2: Navigator Panel",
+                navStep2Desc: "Use the Navigator panel (Ctrl+N):",
+                navStep2List1: "Access your trading accounts",
+                navStep2List2: "Manage indicators and Expert Advisors",
+                navStep2List3: "Access scripts and custom indicators",
+                navStep2List4: "View your trading history",
+                // Trading Features content
+                tradingStep1Title: "Step 1: Market Orders",
+                tradingStep1Desc: "Execute instant trades:",
+                tradingStep1List1: "Click 'New Order' or press F9",
+                tradingStep1List2: "Select your trading instrument",
+                tradingStep1List3: "Choose order volume (lot size)",
+                tradingStep1List4: "Set Stop Loss and Take Profit levels",
+                tradingStep1List5: "Click 'Buy' or 'Sell' to execute",
+                tradingStep2Title: "Step 2: Pending Orders",
+                tradingStep2Desc: "Set up pending orders:",
+                tradingStep2List1: "Select 'Pending Order' type",
+                tradingStep2List2: "Choose between Buy Stop, Sell Stop, Buy Limit, or Sell Limit",
+                tradingStep2List3: "Set your entry price",
+                tradingStep2List4: "Define expiration time (optional)",
+                tradingStep2List5: "Set Stop Loss and Take Profit levels",
+                // Chart Analysis content
+                chartStep1Title: "Step 1: Chart Setup",
+                chartStep1Desc: "Configure your charts:",
+                chartStep1List1: "Choose chart type (Candlestick, Bar, Line)",
+                chartStep1List2: "Select timeframe (M1 to Monthly)",
+                chartStep1List3: "Add technical indicators",
+                chartStep1List4: "Customize chart appearance",
+                chartStep2Title: "Step 2: Technical Analysis",
+                chartStep2Desc: "Perform technical analysis:",
+                chartStep2List1: "Add trend indicators (Moving Averages, MACD)",
+                chartStep2List2: "Use oscillators (RSI, Stochastic)",
+                chartStep2List3: "Apply Fibonacci tools",
+                chartStep2List4: "Draw support/resistance levels",
+                // Expert Advisors content
+                eaStep1Title: "Step 1: EA Installation",
+                eaStep1Desc: "Install and configure EAs:",
+                eaStep1List1: "Copy EA files to the Experts folder",
+                eaStep1List2: "Restart MT5 or refresh Navigator",
+                eaStep1List3: "Drag EA to a chart",
+                eaStep1List4: "Configure parameters and settings",
+                eaStep2Title: "Step 2: EA Testing",
+                eaStep2Desc: "Test your EAs:",
+                eaStep2List1: "Use Strategy Tester (Ctrl+R)",
+                eaStep2List2: "Select testing period",
+                eaStep2List3: "Choose testing mode (Every tick, Control points)",
+                eaStep2List4: "Analyze test results",
+                // Custom Indicators content
+                indicatorStep1Title: "Step 1: Indicator Development",
+                indicatorStep1Desc: "Create custom indicators:",
+                indicatorStep1List1: "Open MetaEditor (F4)",
+                indicatorStep1List2: "Create new indicator file",
+                indicatorStep1List3: "Write indicator code in MQL5",
+                indicatorStep1List4: "Compile and test the indicator",
+                resourceLink1: "MC Markets Learning Center",
+                resourceDesc1: "Comprehensive trading education and market analysis",
+                resourceLink2: "MetaTrader 5 Official Documentation",
+                resourceDesc2: "Complete platform documentation and guides",
+                resourceLink3: "MQL5 Community Forum",
+                resourceDesc3: "Expert discussions and code examples",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "Trading news and economic calendar",
+                resourceLink5: "TradingView Analysis",
+                resourceDesc5: "Technical analysis and trading ideas",
+                resourceLink6: "Babypips Trading Course",
+                resourceDesc6: "Free forex trading education"
+            },
+            de: {
+                title: "MetaTrader 5 (MT5) Tutorials",
+                subtitle: "Umfassende Handelsplattform für alle Märkte",
+                gettingStarted: "Erste Schritte mit MT5",
+                installation: "Installation und Einrichtung",
+                basicNavigation: "Grundlegende Navigation",
+                tradingFeatures: "Handelsfunktionen",
+                orderTypes: "Auftragsarten",
+                chartAnalysis: "Chartanalyse",
+                advancedFeatures: "Erweiterte Funktionen",
+                expertAdvisors: "Expert Advisors (EAs)",
+                customIndicators: "Benutzerdefinierte Indikatoren",
+                platformComparison: "Plattformvergleich",
+                educationalResources: "Bildungsressourcen",
+                // Content translations
+                downloadTitle: "MetaTrader 5 herunterladen",
+                downloadSteps: "Folgen Sie diesen Schritten, um MetaTrader 5 herunterzuladen und zu installieren:",
+                step1Title: "Schritt 1: Besuchen Sie die offizielle Website",
+                step1Desc: "Gehen Sie zur offiziellen MetaTrader 5-Website oder der Download-Seite Ihres Brokers.",
+                step2Title: "Schritt 2: Wählen Sie Ihre Plattform",
+                step2Desc: "Wählen Sie die passende Version für Ihr Betriebssystem (Windows/Mac).",
+                step2Note: "Hinweis: Mac-Benutzer benötigen möglicherweise zusätzliche Software wie Wine oder CrossOver für optimale Leistung.",
+                step3Title: "Schritt 3: Herunterladen und Installieren",
+                step3Desc: "Führen Sie das Installationsprogramm aus und folgen Sie dem Setup-Assistenten. Akzeptieren Sie die Lizenzvereinbarung und wählen Sie Ihren Installationsort.",
+                downloadButton: "MetaTrader 5 herunterladen",
+                // Getting Started content
+                setupStep1Title: "Schritt 1: Ersteinrichtung",
+                setupStep1Desc: "Nach der Installation starten Sie MT5 und erstellen ein neues Konto:",
+                setupStep1List1: "Klicken Sie auf 'Datei' > 'Konto eröffnen'",
+                setupStep1List2: "Wählen Sie zwischen Demo- oder Live-Konto",
+                setupStep1List3: "Füllen Sie Ihre persönlichen Daten aus",
+                setupStep1List4: "Legen Sie Ihre Handelspräferenzen fest",
+                setupStep2Title: "Schritt 2: Plattformkonfiguration",
+                setupStep2Desc: "Konfigurieren Sie Ihre Handelsumgebung:",
+                setupStep2List1: "Legen Sie Ihre bevorzugte Sprache fest (Extras > Optionen > Sprache)",
+                setupStep2List2: "Konfigurieren Sie die Chart-Einstellungen (Rechtsklick auf Chart > Eigenschaften)",
+                setupStep2List3: "Richten Sie Benachrichtigungen ein (Extras > Optionen > Benachrichtigungen)",
+                setupStep2List4: "Passen Sie die Symbolleiste an (Rechtsklick auf Symbolleiste > Anpassen)",
+                // Navigation content
+                navStep1Title: "Schritt 1: Marktübersicht",
+                navStep1Desc: "Öffnen Sie das Marktübersichtsfenster (Strg+M):",
+                navStep1List1: "Zeigen Sie verfügbare Handelsinstrumente an",
+                navStep1List2: "Fügen Sie Symbole zu Ihrer Watchlist hinzu/entfernen Sie sie",
+                navStep1List3: "Zeigen Sie Geld-/Briefkurse und Spreads an",
+                navStep1List4: "Greifen Sie auf Symbol-Eigenschaften und Spezifikationen zu",
+                navStep2Title: "Schritt 2: Navigator-Panel",
+                navStep2Desc: "Verwenden Sie das Navigator-Panel (Strg+N):",
+                navStep2List1: "Greifen Sie auf Ihre Handelskonten zu",
+                navStep2List2: "Verwalten Sie Indikatoren und Expert Advisors",
+                navStep2List3: "Greifen Sie auf Skripte und benutzerdefinierte Indikatoren zu",
+                navStep2List4: "Zeigen Sie Ihren Handelsverlauf an",
+                // Trading Features content
+                tradingStep1Title: "Schritt 1: Marktbestellungen",
+                tradingStep1Desc: "Einzelhandel:",
+                tradingStep1List1: "Klicken Sie auf 'Neue Bestellung' oder drücken Sie F9",
+                tradingStep1List2: "Wählen Sie Ihr Handelsinstrument aus",
+                tradingStep1List3: "Wählen Sie die Bestellungsvolumen (Lotsize)",
+                tradingStep1List4: "Setzen Sie Stop Loss und Take Profit-Level",
+                tradingStep1List5: "Klicken Sie auf 'Kaufen' oder 'Verkaufen', um auszuführen",
+                tradingStep2Title: "Schritt 2: Ausstehende Bestellungen",
+                tradingStep2Desc: "Ausstehende Bestellungen einrichten:",
+                tradingStep2List1: "Wählen Sie 'Ausstehende Bestellung' Typ",
+                tradingStep2List2: "Wählen Sie zwischen Buy Stop, Sell Stop, Buy Limit oder Sell Limit",
+                tradingStep2List3: "Setzen Sie Ihren Eintrittspreis",
+                tradingStep2List4: "Definieren Sie die Ablaufzeit (optional)",
+                tradingStep2List5: "Setzen Sie Stop Loss und Take Profit-Level",
+                // Chart Analysis content
+                chartStep1Title: "Schritt 1: Chart-Einrichtung",
+                chartStep1Desc: "Konfigurieren Sie Ihre Charts:",
+                chartStep1List1: "Wählen Sie den Chart-Typ (Kerzen, Balken, Linie)",
+                chartStep1List2: "Wählen Sie den Zeitrahmen (M1 bis Monatlich)",
+                chartStep1List3: "Fügen Sie technische Indikatoren hinzu",
+                chartStep1List4: "Passen Sie das Chart-Erscheinungsbild an",
+                chartStep2Title: "Schritt 2: Technische Analyse",
+                chartStep2Desc: "Führen Sie technische Analysen durch:",
+                chartStep2List1: "Fügen Sie Trendindikatoren hinzu (Gleitende Durchschnitte, MACD)",
+                chartStep2List2: "Verwenden Sie Oszillatoren (RSI, Stochastic)",
+                chartStep2List3: "Wenden Sie Fibonacci-Tools an",
+                chartStep2List4: "Zeichnen Sie Unterstützungs-/Widerstandslinien",
+                // Expert Advisors content
+                eaStep1Title: "Schritt 1: EA-Installation",
+                eaStep1Desc: "Installieren und konfigurieren Sie EAs:",
+                eaStep1List1: "Kopieren Sie EA-Dateien in den Experts-Ordner",
+                eaStep1List2: "Starten Sie MT5 neu oder aktualisieren Sie den Navigator",
+                eaStep1List3: "Ziehen Sie den EA auf ein Chart",
+                eaStep1List4: "Konfigurieren Sie Parameter und Einstellungen",
+                eaStep2Title: "Schritt 2: EA-Test",
+                eaStep2Desc: "Testen Sie Ihre EAs:",
+                eaStep2List1: "Verwenden Sie den Strategietester (Strg+R)",
+                eaStep2List2: "Wählen Sie den Testzeitraum",
+                eaStep2List3: "Wählen Sie den Testmodus (Jeder Tick, Kontrollpunkte)",
+                eaStep2List4: "Analysieren Sie die Testergebnisse",
+                // Custom Indicators content
+                indicatorStep1Title: "Schritt 1: Indikatorentwicklung",
+                indicatorStep1Desc: "Erstellen Sie benutzerdefinierte Indikatoren:",
+                indicatorStep1List1: "Öffnen Sie den MetaEditor (F4)",
+                indicatorStep1List2: "Erstellen Sie eine neue Indikator-Datei",
+                indicatorStep1List3: "Schreiben Sie den Indikator-Code in MQL5",
+                indicatorStep1List4: "Kompilieren und testen Sie den Indikator",
+                resourceLink1: "MC Markets Lernzentrum",
+                resourceDesc1: "Umfassende Handelserziehung und Marktanalyse",
+                resourceLink2: "MetaTrader 5 Offizielle Dokumentation",
+                resourceDesc2: "Vollständige Plattformdokumentation und Anleitungen",
+                resourceLink3: "MQL5 Community Forum",
+                resourceDesc3: "Expertendiskussionen und Codebeispiele",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "Handelsnachrichten und Wirtschaftskalender",
+                resourceLink5: "TradingView Analyse",
+                resourceDesc5: "Technische Analyse und Handelsideen",
+                resourceLink6: "Babypips Handelskurs",
+                resourceDesc6: "Kostenlose Forex-Handelsausbildung"
+            },
+            ja: {
+                title: "MetaTrader 5 (MT5) チュートリアル",
+                subtitle: "すべての市場に対応した包括的な取引プラットフォーム",
+                gettingStarted: "MT5の基本操作",
+                installation: "インストールとセットアップ",
+                basicNavigation: "基本的なナビゲーション",
+                tradingFeatures: "取引機能",
+                orderTypes: "注文タイプ",
+                chartAnalysis: "チャート分析",
+                advancedFeatures: "高度な機能",
+                expertAdvisors: "エキスパートアドバイザー（EA）",
+                customIndicators: "カスタムインジケーター",
+                platformComparison: "プラットフォーム比較",
+                educationalResources: "教育リソース",
+                // Content translations
+                downloadTitle: "MetaTrader 5のダウンロード",
+                downloadSteps: "MetaTrader 5をダウンロードしてインストールするには、以下の手順に従ってください：",
+                step1Title: "ステップ1：公式サイトにアクセス",
+                step1Desc: "MetaTrader 5の公式サイトまたはブローカーのプラットフォームダウンロードページにアクセスします。",
+                step2Title: "ステップ2：プラットフォームを選択",
+                step2Desc: "お使いのオペレーティングシステム（Windows/Mac）に適したバージョンを選択します。",
+                step2Note: "注：Macユーザーは、最適なパフォーマンスのためにWineやCrossOverなどの追加ソフトウェアが必要な場合があります。",
+                step3Title: "ステップ3：ダウンロードとインストール",
+                step3Desc: "インストーラーを実行し、セットアップウィザードに従います。ライセンス契約に同意し、インストール場所を選択します。",
+                downloadButton: "MetaTrader 5をダウンロード",
+                // Getting Started content
+                setupStep1Title: "ステップ1：初期設定",
+                setupStep1Desc: "インストール後、MT5を起動して新しいアカウントを作成します：",
+                setupStep1List1: "'ファイル' > 'アカウントを開く' クリック",
+                setupStep1List2: "デモ または ライブアカウントを選択",
+                setupStep1List3: "個人情報を入力",
+                setupStep1List4: "取引設定を設定",
+                setupStep2Title: "ステップ2：プラットフォーム設定",
+                setupStep2Desc: "取引環境を設定します：",
+                setupStep2List1: "言語を設定（ツール > オプション > 言語）",
+                setupStep2List2: "チャート設定を構成（チャートを右クリック > プロパティ）",
+                setupStep2List3: "通知を設定（ツール > オプション > 通知）",
+                setupStep2List4: "ツールバーをカスタマイズ（ツールバーを右クリック > カスタマイズ）",
+                // Navigation content
+                navStep1Title: "ステップ1：マーケットウォッチウィンドウ",
+                navStep1Desc: "マーケットウォッチウィンドウを開きます（Ctrl+M）：",
+                navStep1List1: "利用可能な取引商品を表示",
+                navStep1List2: "ウォッチリストにシンボルを追加/削除",
+                navStep1List3: "ビッド/アスク価格とスプレッドを表示",
+                navStep1List4: "シンボルのプロパティと仕様にアクセス",
+                navStep2Title: "ステップ2：ナビゲーターパネル",
+                navStep2Desc: "ナビゲーターパネルを使用します（Ctrl+N）：",
+                navStep2List1: "取引アカウントにアクセス",
+                navStep2List2: "インジケーターとエキスパートアドバイザーを管理",
+                navStep2List3: "スクリプトとカスタムインジケーターにアクセス",
+                navStep2List4: "取引履歴を表示",
+                // Trading Features content
+                tradingStep1Title: "ステップ1：マーケットオーダー",
+                tradingStep1Desc: "インスタント取引:",
+                tradingStep1List1: "新しい注文をクリックするか、F9を押します",
+                tradingStep1List2: "取引商品を選択",
+                tradingStep1List3: "注文量（ロットサイズ）を選択",
+                tradingStep1List4: "ストップロスとタイトルレベルを設定",
+                tradingStep1List5: "買いまたは売りをクリックして実行",
+                tradingStep2Title: "ステップ2：保留注文",
+                tradingStep2Desc: "保留注文を設定:",
+                tradingStep2List1: "保留注文の種類を選択",
+                tradingStep2List2: "買いストップ、売りストップ、買い制限、または売り制限を選択",
+                tradingStep2List3: "エントリー価格を設定",
+                tradingStep2List4: "有効期限を定義（オプション）",
+                tradingStep2List5: "ストップロスとタイトルレベルを設定",
+                // Chart Analysis content
+                chartStep1Title: "ステップ1：チャート設定",
+                chartStep1Desc: "チャートを設定します：",
+                chartStep1List1: "チャートタイプを選択（ローソク足、バー、ライン）",
+                chartStep1List2: "時間枠を選択（M1から月次まで）",
+                chartStep1List3: "テクニカル指標を追加",
+                chartStep1List4: "チャートの外観をカスタマイズ",
+                chartStep2Title: "ステップ2：テクニカル分析",
+                chartStep2Desc: "テクニカル分析を実行します：",
+                chartStep2List1: "トレンド指標を追加（移動平均、MACD）",
+                chartStep2List2: "オシレーターを使用（RSI、ストキャスティクス）",
+                chartStep2List3: "フィボナッチツールを適用",
+                chartStep2List4: "サポート/レジスタンスレベルを描画",
+                // Expert Advisors content
+                eaStep1Title: "ステップ1：EAのインストール",
+                eaStep1Desc: "EAをインストールして設定します：",
+                eaStep1List1: "EAファイルをExpertsフォルダにコピー",
+                eaStep1List2: "MT5を再起動するか、ナビゲーターを更新",
+                eaStep1List3: "EAをチャートにドラッグ",
+                eaStep1List4: "パラメータと設定を構成",
+                eaStep2Title: "ステップ2：EAのテスト",
+                eaStep2Desc: "EAをテストします：",
+                eaStep2List1: "ストラテジーテスターを使用（Ctrl+R）",
+                eaStep2List2: "テスト期間を選択",
+                eaStep2List3: "テストモードを選択（ティックごと、制御ポイント）",
+                eaStep2List4: "テスト結果を分析",
+                // Custom Indicators content
+                indicatorStep1Title: "ステップ1：インジケーター開発",
+                indicatorStep1Desc: "カスタムインジケーターを作成します：",
+                indicatorStep1List1: "MetaEditorを開く（F4）",
+                indicatorStep1List2: "新しいインジケーターファイルを作成",
+                indicatorStep1List3: "MQL5でインジケーターコードを記述",
+                indicatorStep1List4: "インジケーターをコンパイルしてテスト",
+                resourceLink1: "MC Markets ラーニングセンター",
+                resourceDesc1: "包括的な取引教育と市場分析",
+                resourceLink2: "MetaTrader 5 公式ドキュメント",
+                resourceDesc2: "完全なプラットフォームのドキュメントとガイド",
+                resourceLink3: "MQL5 コミュニティフォーラム",
+                resourceDesc3: "専門家の討論とコード オカウントを開く' クリック",
+                setupStep1List2: "Choose between demo or live account",
+                setupStep1List3: "Fill in your personal information",
+                setupStep1List4: "Set your trading preferences",
+                setupStep2Title: "Step 2: Platform Configuration",
+                setupStep2Desc: "Configure your trading environment:",
+                setupStep2List1: "Set your preferred language (Tools > Options > Language)",
+                setupStep2List2: "Configure chart settings (right-click chart > Properties)",
+                setupStep2List3: "Set up notifications (Tools > Options > Notifications)",
+                setupStep2List4: "Customize toolbar (right-click toolbar > Customize)",
+                // Navigation content
+                navStep1Title: "Step 1: Market Watch Window",
+                navStep1Desc: "Access the Market Watch window (Ctrl+M):",
+                navStep1List1: "View available trading instruments",
+                navStep1List2: "Add/remove symbols from your watchlist",
+                navStep1List3: "View bid/ask prices and spreads",
+                navStep1List4: "Access symbol properties and specifications",
+                navStep2Title: "Step 2: Navigator Panel",
+                navStep2Desc: "Use the Navigator panel (Ctrl+N):",
+                navStep2List1: "Access your trading accounts",
+                navStep2List2: "Manage indicators and Expert Advisors",
+                navStep2List3: "Access scripts and custom indicators",
+                navStep2List4: "View your trading history",
+                // Trading Features content
+                tradingStep1Title: "Step 1: Market Orders",
+                tradingStep1Desc: "Execute instant trades:",
+                tradingStep1List1: "Click 'New Order' or press F9",
+                tradingStep1List2: "Select your trading instrument",
+                tradingStep1List3: "Choose order volume (lot size)",
+                tradingStep1List4: "Set Stop Loss and Take Profit levels",
+                tradingStep1List5: "Click 'Buy' or 'Sell' to execute",
+                tradingStep2Title: "Step 2: Pending Orders",
+                tradingStep2Desc: "Set up pending orders:",
+                tradingStep2List1: "Select 'Pending Order' type",
+                tradingStep2List2: "Choose between Buy Stop, Sell Stop, Buy Limit, or Sell Limit",
+                tradingStep2List3: "Set your entry price",
+                tradingStep2List4: "Define expiration time (optional)",
+                tradingStep2List5: "Set Stop Loss and Take Profit levels",
+                // Chart Analysis content
+                chartStep1Title: "Step 1: Chart Setup",
+                chartStep1Desc: "Configure your charts:",
+                chartStep1List1: "Choose chart type (Candlestick, Bar, Line)",
+                chartStep1List2: "Select timeframe (M1 to Monthly)",
+                chartStep1List3: "Add technical indicators",
+                chartStep1List4: "Customize chart appearance",
+                chartStep2Title: "Step 2: Technical Analysis",
+                chartStep2Desc: "Perform technical analysis:",
+                chartStep2List1: "Add trend indicators (Moving Averages, MACD)",
+                chartStep2List2: "Use oscillators (RSI, Stochastic)",
+                chartStep2List3: "Apply Fibonacci tools",
+                chartStep2List4: "Draw support/resistance levels",
+                // Expert Advisors content
+                eaStep1Title: "Step 1: EA Installation",
+                eaStep1Desc: "Install and configure EAs:",
+                eaStep1List1: "Copy EA files to the Experts folder",
+                eaStep1List2: "Restart MT5 or refresh Navigator",
+                eaStep1List3: "Drag EA to a chart",
+                eaStep1List4: "Configure parameters and settings",
+                eaStep2Title: "Step 2: EA Testing",
+                eaStep2Desc: "Test your EAs:",
+                eaStep2List1: "Use Strategy Tester (Ctrl+R)",
+                eaStep2List2: "Select testing period",
+                eaStep2List3: "Choose testing mode (Every tick, Control points)",
+                eaStep2List4: "Analyze test results",
+                // Custom Indicators content
+                indicatorStep1Title: "Step 1: Indicator Development",
+                indicatorStep1Desc: "Create custom indicators:",
+                indicatorStep1List1: "Open MetaEditor (F4)",
+                indicatorStep1List2: "Create new indicator file",
+                indicatorStep1List3: "Write indicator code in MQL5",
+                indicatorStep1List4: "Compile and test the indicator",
+                resourceLink1: "MC Markets Learning Center",
+                resourceDesc1: "Comprehensive trading education and market analysis",
+                resourceLink2: "MetaTrader 5 Official Documentation",
+                resourceDesc2: "Complete platform documentation and guides",
+                resourceLink3: "MQL5 Community Forum",
+                resourceDesc3: "Expert discussions and code examples",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "Trading news and economic calendar",
+                resourceLink5: "TradingView Analysis",
+                resourceDesc5: "Technical analysis and trading ideas",
+                resourceLink6: "Babypips Trading Course",
+                resourceDesc6: "Free forex trading education"
+            },
+            it: {
+                title: "Tutorial MetaTrader 5 (MT5)",
+                subtitle: "Piattaforma di trading completa per tutti i mercati",
+                gettingStarted: "Iniziare con MT5",
+                installation: "Installazione e Configurazione",
+                basicNavigation: "Navigazione di Base",
+                tradingFeatures: "Funzionalità di Trading",
+                orderTypes: "Tipi di Ordine",
+                chartAnalysis: "Análise de Gráficos",
+                advancedFeatures: "Características Avanzadas",
+                expertAdvisors: "Asesores Expertos (EA)",
+                customIndicators: "Indicadores Personalizados",
+                platformComparison: "Comparación de Plataformas",
+                educationalResources: "Recursos Educativos",
+                // Content translations
+                downloadTitle: "Scarica MetaTrader 5",
+                downloadSteps: "Segui questi passaggi per scaricare e installare MetaTrader 5:",
+                step1Title: "Passo 1: Visita il Sito Ufficiale",
+                step1Desc: "Vai al sito ufficiale di MetaTrader 5 o alla pagina di download della piattaforma del tuo broker.",
+                step2Title: "Passo 2: Scegli la Tua Piattaforma",
+                step2Desc: "Seleziona la versione appropriata per il tuo sistema operativo (Windows/Mac).",
+                step2Note: "Nota: Gli utenti Mac potrebbero aver bisogno di software aggiuntivo come Wine o CrossOver per prestazioni ottimali.",
+                step3Title: "Passo 3: Scarica e Installa",
+                step3Desc: "Esegui il programma di installazione e segui la procedura guidata. Accepte il contratto di licenza e scegli la posizione di installazione.",
+                downloadButton: "Scarica MetaTrader 5",
+                // Getting Started content
+                setupStep1Title: "Passo 1: Configurazione Iniziale",
+                setupStep1Desc: "Dopo l'installazione, avvia MT5 e crea un nuovo account:",
+                setupStep1List1: "Clicca su 'File' > 'Apri un Account'",
+                setupStep1List2: "Scegli tra account demo o live",
+                setupStep1List3: "Compila le tue informazioni personali",
+                setupStep1List4: "Imposta le tue preferenze di trading",
+                setupStep2Title: "Passo 2: Configurazione della Piattaforma",
+                setupStep2Desc: "Configure suo ambiente di trading:",
+                setupStep2List1: "Imposta la lingua preferita (Strumenti > Opzioni > Lingua)",
+                setupStep2List2: "Configure chart settings (right-click chart > Properties)",
+                setupStep2List3: "Imposta le notifiche (Strumenti > Opzioni > Notifiche)",
+                setupStep2List4: "Personalizza la barra degli strumenti (clic destro sulla barra degli strumenti > Personalizza)",
+                // Navigation content
+                navStep1Title: "Passo 1: Finestra Market Watch",
+                navStep1Desc: "Accedi alla finestra Market Watch (Ctrl+M):",
+                navStep1List1: "Visualizza gli strumenti di trading disponibili",
+                navStep1List2: "Aggiungi/rimuovi simboli dalla tua watchlist",
+                navStep1List3: "Visualizza prezzi bid/ask e spreads",
+                navStep1List4: "Accedi alle proprietà e specifiche dei simboli",
+                navStep2Title: "Passo 2: Pannello Navigatore",
+                navStep2Desc: "Usa il pannello Navigatore (Ctrl+N):",
+                navStep2List1: "Accedi ai tuoi account di trading",
+                navStep2List2: "Gestisci indicatori ed Expert Advisors",
+                navStep2List3: "Accedi a script e indicatori personalizzati",
+                navStep2List4: "Visualizza la cronologia delle operazioni",
+                // Trading Features content
+                tradingStep1Title: "Passo 1: Ordini di Mercato",
+                tradingStep1Desc: "Eseguire ordini istantanei:",
+                tradingStep1List1: "Clicca su 'Nuovo Ordine' o premi F9",
+                tradingStep1List2: "Seleziona il tuo strumento di trading",
+                tradingStep1List3: "Scegli la dimensione dell'ordine (lotto)",
+                tradingStep1List4: "Imposta il livello di Stop Loss e Take Profit",
+                tradingStep1List5: "Clicca su 'Acquista' o 'Vendi' per eseguire",
+                tradingStep2Title: "Passo 2: Ordini in Attesa",
+                tradingStep2Desc: "Impostare ordini in attesa:",
+                tradingStep2List1: "Selezionare il tipo di 'Ordine in Attesa'",
+                tradingStep2List2: "Scegliere tra Buy Stop, Sell Stop, Buy Limit o Sell Limit",
+                tradingStep2List3: "Impostare il prezzo di entrata",
+                tradingStep2List4: "Definire la scadenza (opzionale)",
+                tradingStep2List5: "Impostare il livello di Stop Loss e Take Profit",
+                // Chart Analysis content
+                chartStep1Title: "Passo 1: Configurazione del Grafico",
+                chartStep1Desc: "Configurare i grafici:",
+                chartStep1List1: "Scegliere il tipo di grafico (Candlestick, Bar, Line)",
+                chartStep1List2: "Selezionare il timeframe (M1 a Mensile)",
+                chartStep1List3: "Aggiungere gli indicatori tecnici",
+                chartStep1List4: "Personalizzare l'aspetto del grafico",
+                chartStep2Title: "Passo 2: Analisi Tecnica",
+                chartStep2Desc: "Eseguire analisi tecniche:",
+                chartStep2List1: "Aggiungere indicatori di tendenza (Media mobili, MACD)",
+                chartStep2List2: "Utilizzare oscillatori (RSI, Stochastic)",
+                chartStep2List3: "Applicare strumenti di Fibonacci",
+                chartStep2List4: "Disegnare livelli di supporto/resistenza",
+                // Expert Advisors content
+                eaStep1Title: "Passo 1: Installazione EA",
+                eaStep1Desc: "Installare e configurare gli EA:",
+                eaStep1List1: "Copiare i file EA nella cartella Experts",
+                eaStep1List2: "Riavviare MT5 o aggiornare il Navigator",
+                eaStep1List3: "Trascinare l'EA su un grafico",
+                eaStep1List4: "Configurare i parametri e le impostazioni",
+                eaStep2Title: "Passo 2: Test EA",
+                eaStep2Desc: "Testare i vostri EA:",
+                eaStep2List1: "Usare lo Strategietester (Ctrl+R)",
+                eaStep2List2: "Selezionare il periodo di test",
+                eaStep2List3: "Scegliere il modo di test (Ogni tick, Punti di controllo)",
+                eaStep2List4: "Analizzare i risultati dei test",
+                // Custom Indicators content
+                indicatorStep1Title: "Passo 1: Sviluppo dell'Indicatore",
+                indicatorStep1Desc: "Creare indicatori personalizzati:",
+                indicatorStep1List1: "Aprire MetaEditor (F4)",
+                indicatorStep1List2: "Creare una nuova file di indicatore",
+                indicatorStep1List3: "Scrivere il codice dell'indicatore in MQL5",
+                indicatorStep1List4: "Compilare e testare l'indicatore",
+                resourceLink1: "MC Markets Learning Center",
+                resourceDesc1: "Comprehensive trading education and market analysis",
+                resourceLink2: "MetaTrader 5 Official Documentation",
+                resourceDesc2: "Complete platform documentation and guides",
+                resourceLink3: "MQL5 Community Forum",
+                resourceDesc3: "Expert discussions and code examples",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "Trading news and economic calendar",
+                resourceLink5: "TradingView Analysis",
+                resourceDesc5: "Technical analysis and trading ideas",
+                resourceLink6: "Babypips Trading Course",
+                resourceDesc6: "Free forex trading education"
+            },
+            es: {
+                title: "Tutoriales de MetaTrader 5 (MT5)",
+                subtitle: "Plataforma de trading integral para todos los mercados",
+                gettingStarted: "Primeros Pasos con MT5",
+                installation: "Instalación y Configuración",
+                basicNavigation: "Navegación Básica",
+                tradingFeatures: "Características de Trading",
+                orderTypes: "Tipos de Órdenes",
+                chartAnalysis: "Análisis de Gráficos",
+                advancedFeatures: "Características Avanzadas",
+                expertAdvisors: "Asesores Expertos (EA)",
+                customIndicators: "Indicadores Personalizados",
+                platformComparison: "Comparación de Plataformas",
+                educationalResources: "Recursos Educativos",
+                // Content translations
+                downloadTitle: "Descargar MetaTrader 5",
+                downloadSteps: "Sigue estos pasos para descargar e instalar MetaTrader 5:",
+                step1Title: "Paso 1: Visita el Sitio Oficial",
+                step1Desc: "Ve al sitio web oficial de MetaTrader 5 o a la página de descarga de la plataforma de tu broker.",
+                step2Title: "Paso 2: Elige tu Plataforma",
+                step2Desc: "Selecciona la versión apropiada para tu sistema operativo (Windows/Mac).",
+                step2Note: "Nota: Los usuarios de Mac pueden necesitar software adicional como Wine o CrossOver para un rendimiento óptimo.",
+                step3Title: "Paso 3: Descarga e Instale",
+                step3Desc: "Ejecuta el instalador y sigue el asistente de configuración. Acepta el acuerdo de licencia y elige la ubicación de instalación.",
+                downloadButton: "Descargar MetaTrader 5",
+                // Getting Started content
+                setupStep1Title: "Paso 1: Configuración Inicial",
+                setupStep1Desc: "Después de la instalación, inicia MT5 y crea una nueva cuenta:",
+                setupStep1List1: "Haz clic en 'Archivo' > 'Apri un Account'",
+                setupStep1List2: "Elige entre cuenta demo o real",
+                setupStep1List3: "Completa su información personal",
+                setupStep1List4: "Configura tus preferencias de trading",
+                setupStep2Title: "Paso 2: Configuración de la Plataforma",
+                setupStep2Desc: "Configure su entorno de trading:",
+                setupStep2List1: "Establezca su idioma preferido (Herramientas > Opciones > Idioma)",
+                setupStep2List2: "Configure las configuraciones del gráfico (clic derecho en el gráfico > Propiedades)",
+                setupStep2List3: "Configure las notificaciones (Herramientas > Opciones > Notificaciones)",
+                setupStep2List4: "Personalice la barra de herramientas (clic derecho en la barra de herramientas > Personalizar)",
+                // Navigation content
+                navStep1Title: "Paso 1: Ventana Market Watch",
+                navStep1Desc: "Acceda a la ventana Market Watch (Ctrl+M):",
+                navStep1List1: "Visualice los instrumentos de trading disponibles",
+                navStep1List2: "Añada/elimine símbolos de su lista de seguimiento",
+                navStep1List3: "Visualice precios bid/ask y spreads",
+                navStep1List4: "Acceda a propiedades y especificaciones de símbolos",
+                navStep2Title: "Paso 2: Panel Navegador",
+                navStep2Desc: "Use el panel Navegador (Ctrl+N):",
+                navStep2List1: "Acceda a sus cuentas de trading",
+                navStep2List2: "Gestione indicadores y Asesores Expertos",
+                navStep2List3: "Acceda a scripts e indicadores personalizados",
+                navStep2List4: "Visualice su historial de trading",
+                // Trading Features content
+                tradingStep1Title: "Paso 1: Ordenes de Mercado",
+                tradingStep1Desc: "Ejecutar órdenes instantáneas:",
+                tradingStep1List1: "Haga clic en 'Nueva Orden' o presione F9",
+                tradingStep1List2: "Seleccione su instrumento de negociación",
+                tradingStep1List3: "Elija el tamaño del pedido (lote)",
+                tradingStep1List4: "Establezca el nivel de Stop Loss y Take Profit",
+                tradingStep1List5: "Haga clic en 'Comprar' o 'Vender' para ejecutar",
+                tradingStep2Title: "Paso 2: Ordenes Pendientes",
+                tradingStep2Desc: "Configurar órdenes pendientes:",
+                tradingStep2List1: "Seleccionar tipo de 'Orden Pendiente'",
+                tradingStep2List2: "Elegir entre Buy Stop, Sell Stop, Buy Limit o Sell Limit",
+                tradingStep2List3: "Establecer precio de entrada",
+                tradingStep2List4: "Definir fecha de vencimiento (opcional)",
+                tradingStep2List5: "Establecer nivel de Stop Loss y Take Profit",
+                // Chart Analysis content
+                chartStep1Title: "Paso 1: Configuración del Gráfico",
+                chartStep1Desc: "Configurar los gráficos:",
+                chartStep1List1: "Seleccionar el tipo de gráfico (Candlestick, Bar, Line)",
+                chartStep1List2: "Seleccionar el timeframe (M1 a Mensual)",
+                chartStep1List3: "Agregar indicadores técnicos",
+                chartStep1List4: "Personalizar la apariencia del gráfico",
+                chartStep2Title: "Paso 2: Análisis Técnico",
+                chartStep2Desc: "Realizar análisis técnico:",
+                chartStep2List1: "Agregar indicadores de tendencia (Media móvil, MACD)",
+                chartStep2List2: "Usar osciladores (RSI, Stochastic)",
+                chartStep2List3: "Aplicar herramientas de Fibonacci",
+                chartStep2List4: "Dibujar niveles de soporte/resistencia",
+                // Expert Advisors content
+                eaStep1Title: "Paso 1: Instalación de EA",
+                eaStep1Desc: "Instalar y configurar EAs:",
+                eaStep1List1: "Copiar archivos EA en la carpeta Experts",
+                eaStep1List2: "Reiniciar MT5 o actualizar el Navigator",
+                eaStep1List3: "Arrastrar EA a un gráfico",
+                eaStep1List4: "Configurar parámetros y ajustes",
+                eaStep2Title: "Paso 2: Prueba de EA",
+                eaStep2Desc: "Probar sus EAs:",
+                eaStep2List1: "Usar el Estrategista de Estrategias (Ctrl+R)",
+                eaStep2List2: "Seleccionar el período de prueba",
+                eaStep2List3: "Elegir el modo de prueba (Cada tick, Puntos de control)",
+                eaStep2List4: "Analizar los resultados de la prueba",
+                // Custom Indicators content
+                indicatorStep1Title: "Paso 1: Desarrollo del Indicador",
+                indicatorStep1Desc: "Crear indicadores personalizados:",
+                indicatorStep1List1: "Abrir MetaEditor (F4)",
+                indicatorStep1List2: "Crear un nuevo archivo de indicador",
+                indicatorStep1List3: "Escribir el código del indicador en MQL5",
+                indicatorStep1List4: "Compilar y probar el indicador",
+                resourceLink1: "MC Markets Learning Center",
+                resourceDesc1: "Comprehensive trading education and market analysis",
+                resourceLink2: "MetaTrader 5 Official Documentation",
+                resourceDesc2: "Complete platform documentation and guides",
+                resourceLink3: "MQL5 Community Forum",
+                resourceDesc3: "Expert discussions and code examples",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "Trading news and economic calendar",
+                resourceLink5: "TradingView Analysis",
+                resourceDesc5: "Technical analysis and trading ideas",
+                resourceLink6: "Babypips Trading Course",
+                resourceDesc6: "Free forex trading education"
+            },
+            ko: {
+                title: "메타트레이더 5 (MT5) 튜토리얼",
+                subtitle: "모든 시장을 위한 종합 거래 플랫폼",
+                gettingStarted: "MT5 시작하기",
+                installation: "설치 및 설정",
+                basicNavigation: "기본 네비게이션",
+                tradingFeatures: "거래 기능",
+                orderTypes: "주문 유형",
+                chartAnalysis: "차트 분석",
+                advancedFeatures: "고급 기능",
+                expertAdvisors: "전문가 자문 (EA)",
+                customIndicators: "사용자 정의 지표",
+                platformComparison: "플랫폼 비교",
+                educationalResources: "교육 자료",
+                // Content translations
+                downloadTitle: "MetaTrader 5 다운로드",
+                downloadSteps: "MetaTrader 5를 다운로드하고 설치하려면 다음 단계를 따르세요:",
+                step1Title: "1단계: 공식 웹사이트 방문",
+                step1Desc: "MetaTrader 5 공식 웹사이트 또는 브로커의 플랫폼 다운로드 페이지로 이동하세요.",
+                step2Title: "2단계: 플랫폼 선택",
+                step2Desc: "운영 체제(Windows/Mac)에 맞는 버전을 선택하세요.",
+                step2Note: "참고: Mac 사용자는 최적의 성능을 위해 Wine이나 CrossOver와 같은 추가 소프트웨어가 필요할 수 있습니다.",
+                step3Title: "3단계: 다운로드 및 설치",
+                step3Desc: "설치 프로그램을 실행하고 설치 마법사를 따르세요. 라이센스 계약에 동의하고 설치 위치를 선택하세요.",
+                downloadButton: "MetaTrader 5 다운로드",
+                // Getting Started content
+                setupStep1Title: "1단계: 초기 설정",
+                setupStep1Desc: "설치 후 MT5를 실행하고 새 계정을 만드세요:",
+                setupStep1List1: "'파일' > '계정 열기' 클릭",
+                setupStep1List2: "데모 또는 실전 계정 선택",
+                setupStep1List3: "개인 정보 입력",
+                setupStep1List4: "거래 환경 설정",
+                setupStep2Title: "2단계: 플랫폼 설정",
+                setupStep2Desc: "거래 환경을 설정하세요:",
+                setupStep2List1: "선호 언어 설정(도구 > 옵션 > 언어)",
+                setupStep2List2: "차트 설정 구성(차트 우클릭 > 속성)",
+                setupStep2List3: "알림 설정(도구 > 옵션 > 알림)",
+                setupStep2List4: "도구 모음 사용자 지정(도구 모음 우클릭 > 사용자 지정)",
+                // Navigation content
+                navStep1Title: "1단계: 시세 창",
+                navStep1Desc: "시세 창을 엽니다(Ctrl+M):",
+                navStep1List1: "사용 가능한 거래 상품 보기",
+                navStep1List2: "관심 종목에 심볼 추가/제거",
+                navStep1List3: "매수/매도 가격과 스프레드 보기",
+                navStep1List4: "심볼 속성과 사양에 접근",
+                navStep2Title: "2단계: 탐색기 패널",
+                navStep2Desc: "탐색기 패널을 사용합니다(Ctrl+N):",
+                navStep2List1: "거래 계정에 접근",
+                navStep2List2: "지표와 전문가 자문 관리",
+                navStep2List3: "스크립트와 사용자 정의 지표에 접근",
+                navStep2List4: "거래 내역 보기",
+                // Trading Features content
+                tradingStep1Title: "1단계: 마켓 오더",
+                tradingStep1Desc: "인스턴트 주문 실행:",
+                tradingStep1List1: "새 주문을 클릭하거나 F9를 누릅니다",
+                tradingStep1List2: "거래 상품을 선택합니다",
+                tradingStep1List3: "주문 크기(로트)를 선택합니다",
+                tradingStep1List4: "스톱 로스와 테이크 프로피트 수준을 설정합니다",
+                tradingStep1List5: "매수 또는 매도를 클릭하여 실행",
+                tradingStep2Title: "2단계: 보류 주문",
+                tradingStep2Desc: "보류 주문 설정:",
+                tradingStep2List1: "보류 주문 유형 선택",
+                tradingStep2List2: "Buy Stop, Sell Stop, Buy Limit 또는 Sell Limit 중에서 선택",
+                tradingStep2List3: "입력 가격 설정",
+                tradingStep2List4: "유효 기간 정의(선택 사항)",
+                tradingStep2List5: "스톱 로스와 테이크 프로피트 수준 설정",
+                // Chart Analysis content
+                chartStep1Title: "스텝 1: 차트 설정",
+                chartStep1Desc: "차트를 설정합니다:",
+                chartStep1List1: "차트 유형을 선택하세요 (캔들스틱, 바, 라인)",
+                chartStep1List2: "시간 프레임을 선택하세요 (M1에서 월별까지)",
+                chartStep1List3: "기술적 지표를 추가하세요",
+                chartStep1List4: "차트의 외관을 커스터마이즈",
+                chartStep2Title: "스텝 2: 기술적 분석",
+                chartStep2Desc: "기술적 분석을 실행합니다:",
+                chartStep2List1: "추세 지표를 추가하세요 (이동 평균, MACD)",
+                chartStep2List2: "주기 지표를 사용하세요 (RSI, Stochastic)",
+                chartStep2List3: "피보나치 도구를 적용하세요",
+                chartStep2List4: "지지선/저항선을 그립니다",
+                // Expert Advisors content
+                eaStep1Title: "스텝 1: EA 설치",
+                eaStep1Desc: "EA를 설치하고 설정합니다:",
+                eaStep1List1: "EA 파일을 Experts 폴더에 복사",
+                eaStep1List2: "MT5를 다시 시작하거나 네비게이터를 업데이트",
+                eaStep1List3: "EA를 차트에 드래그",
+                eaStep1List4: "파라메터와 설정을 구성",
+                eaStep2Title: "스텝 2: EA 테스트",
+                eaStep2Desc: "EA를 테스트합니다:",
+                eaStep2List1: "전략 테스터를 사용하세요 (Ctrl+R)",
+                eaStep2List2: "테스트 기간을 선택하세요",
+                eaStep2List3: "테스트 모드를 선택하세요 (각 틱, 제어 포인트)",
+                eaStep2List4: "테스트 결과를 분석",
+                // Custom Indicators content
+                indicatorStep1Title: "스텝 1: 지표 개발",
+                indicatorStep1Desc: "사용자 정의 지표를 만듭니다:",
+                indicatorStep1List1: "MetaEditor를 엽니다 (F4)",
+                indicatorStep1List2: "새로운 지표 파일을 만듭니다",
+                indicatorStep1List3: "MQL5로 지표 코드를 작성",
+                indicatorStep1List4: "지표를 컴파일하고 테스트",
+                resourceLink1: "MC Markets 래빙 센터",
+                resourceDesc1: "종합적인 거래 교육과 시장 분석",
+                resourceLink2: "MetaTrader 5 공식 문서",
+                resourceDesc2: "완전한 플랫폼의 문서와 안내서",
+                resourceLink3: "MQL5 커뮤니티 포럼",
+                resourceDesc3: "전문가의 토론과 코드 예제",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "거래 뉴스와 경제 캘린더",
+                resourceLink5: "TradingView 분석",
+                resourceDesc5: "기술적 분석과 거래 아이디어",
+                resourceLink6: "Babypips 거래 코스",
+                resourceDesc6: "무료의 포레스크 거래 교육"
+            },
+            nl: {
+                title: "MetaTrader 5 (MT5) Tutorials",
+                subtitle: "Uitgebreid handelsplatform voor alle markten",
+                gettingStarted: "Aan de Slag met MT5",
+                installation: "Installatie en Instellingen",
+                basicNavigation: "Basisnavigatie",
+                tradingFeatures: "Handelsfuncties",
+                orderTypes: "Order Types",
+                chartAnalysis: "Grafiekanalyse",
+                advancedFeatures: "Geavanceerde Functies",
+                expertAdvisors: "Expert Advisors (EA)",
+                customIndicators: "Aangepaste Indicatoren",
+                platformComparison: "Platformvergelijking",
+                educationalResources: "Educatieve Bronnen",
+                // Content translations
+                downloadTitle: "MetaTrader 5 Downloaden",
+                downloadSteps: "Volg deze stappen om MetaTrader 5 te downloaden en te installeren:",
+                step1Title: "Stap 1: Bezoek de Officiële Website",
+                step1Desc: "Ga naar de officiële MetaTrader 5-website of de downloadpagina van je broker.",
+                step2Title: "Stap 2: Kies je Platform",
+                step2Desc: "Selecteer de juiste versie voor je besturingssysteem (Windows/Mac).",
+                step2Note: "Opmerking: Mac-gebruikers hebben mogelijk extra software zoals Wine of CrossOver nodig voor optimale prestaties.",
+                step3Title: "Stap 3: Download en Installeer",
+                step3Desc: "Voer het installatieprogramma uit en volg de installatiewizard. Accepteer de licentieovereenkomst en kies de installatielocatie.",
+                downloadButton: "MetaTrader 5 Downloaden",
+                // Getting Started content
+                setupStep1Title: "Stap 1: Initiële Instellingen",
+                setupStep1Desc: "Start na installatie MT5 en maak een nieuw account aan:",
+                setupStep1List1: "Klik op 'Bestand' > 'Account Openen'",
+                setupStep1List2: "Kies tussen demo- of live account",
+                setupStep1List3: "Vul je persoonlijke gegevens in",
+                setupStep1List4: "Stel je handelsvoorkeuren in",
+                setupStep2Title: "Stap 2: Platformconfiguratie",
+                setupStep2Desc: "Configureer je handelsomgeving:",
+                setupStep2List1: "Stel je voorkeurstaal in (Extra > Opties > Taal)",
+                setupStep2List2: "Configureer grafiekinstellingen (rechtsklik op grafiek > Eigenschappen)",
+                setupStep2List3: "Stel meldingen in (Extra > Opties > Meldingen)",
+                setupStep2List4: "Pas de werkbalk aan (rechtsklik op werkbalk > Aanpassen)",
+                // Navigation content
+                navStep1Title: "Stap 1: Market Watch Venster",
+                navStep1Desc: "Open het Market Watch venster (Ctrl+M):",
+                navStep1List1: "Bekijk beschikbare handelsinstrumenten",
+                navStep1List2: "Voeg symbolen toe aan/verwijder van je watchlist",
+                navStep1List3: "Bekijk bied-/laatprijzen en spreads",
+                navStep1List4: "Toegang tot symbooleigenschappen en specificaties",
+                navStep2Title: "Stap 2: Navigator Paneel",
+                navStep2Desc: "Gebruik het Navigator paneel (Ctrl+N):",
+                navStep2List1: "Toegang tot je handelsaccounts",
+                navStep2List2: "Beheer indicatoren en Expert Advisors",
+                navStep2List3: "Toegang tot scripts en aangepaste indicatoren",
+                navStep2List4: "Bekijk je handelsgeschiedenis",
+                // Trading Features content
+                tradingStep1Title: "Stap 1: Marktbestelling",
+                tradingStep1Desc: "Instante handel uitvoeren:",
+                tradingStep1List1: "Klik op 'Nieuwe Bestelling' of druk op F9",
+                tradingStep1List2: "Uw handelsinstrument selecteren",
+                tradingStep1List3: "De ordergrootte (lot) kiezen",
+                tradingStep1List4: "Stop Loss en Take Profit-niveau instellen",
+                tradingStep1List5: "Klik op 'Kopen' of 'Verkopen' om uit te voeren",
+                tradingStep2Title: "Stap 2: In behandeling zijnde bestellingen",
+                tradingStep2Desc: "In behandeling zijnde bestellingen instellen:",
+                tradingStep2List1: "Type 'In behandeling zijnde bestelling' selecteren",
+                tradingStep2List2: "Kiezen tussen Buy Stop, Sell Stop, Buy Limit of Sell Limit",
+                tradingStep2List3: "Invoerprijs instellen",
+                tradingStep2List4: "Vervaldatum definiëren (optioneel)",
+                tradingStep2List5: "Stop Loss en Take Profit-niveau instellen",
+                // Chart Analysis content
+                chartStep1Title: "Stap 1: Grafiekinstellingen",
+                chartStep1Desc: "Grafieken configureren:",
+                chartStep1List1: "Kies het grafiektype (Candlestick, Balken, Lijn)",
+                chartStep1List2: "Selecteer de tijdseenheid (M1 tot Maandelijks)",
+                chartStep1List3: "Technische indicatoren toevoegen",
+                chartStep1List4: "Grafiek uiterlijk aanpassen",
+                chartStep2Title: "Stap 2: Technische Analyse",
+                chartStep2Desc: "Technische analyse uitvoeren:",
+                chartStep2List1: "Trendindicatoren toevoegen (Gleitende Durchschnitte, MACD)",
+                chartStep2List2: "Oscillatoren gebruiken (RSI, Stochastic)",
+                chartStep2List3: "Fibonacci-tools toepassen",
+                chartStep2List4: "Ondersteunings-/weerstandslinien tekenen",
+                // Expert Advisors content
+                eaStep1Title: "Stap 1: EA-installatie",
+                eaStep1Desc: "EAs installeren en configureren:",
+                eaStep1List1: "EA-bestanden naar de Experts-map kopiëren",
+                eaStep1List2: "MT5 opnieuw starten of de Navigator vernieuwen",
+                eaStep1List3: "EA naar een grafiek slepen",
+                eaStep1List4: "Parameters en instellingen configureren",
+                eaStep2Title: "Stap 2: EA-test",
+                eaStep2Desc: "EAs testen:",
+                eaStep2List1: "Strategietester gebruiken (Ctrl+R)",
+                eaStep2List2: "Testperiode kiezen",
+                eaStep2List3: "Testmodus kiezen (Elke tick, Controlepunten)",
+                eaStep2List4: "Testresultaten analyseren",
+                // Custom Indicators content
+                indicatorStep1Title: "Stap 1: Indicatorentwikkeling",
+                indicatorStep1Desc: "Gebruikersdefinieerde indicatoren maken:",
+                indicatorStep1List1: "MetaEditor openen (F4)",
+                indicatorStep1List2: "Een nieuwe indicatordatei maken",
+                indicatorStep1List3: "MQL5-code schrijven voor de indicator",
+                indicatorStep1List4: "Indicatoren compileren en testen",
+                resourceLink1: "MC Markets Learning Center",
+                resourceDesc1: "Comprehensive trading education and market analysis",
+                resourceLink2: "MetaTrader 5 Official Documentation",
+                resourceDesc2: "Complete platform documentation and guides",
+                resourceLink3: "MQL5 Community Forum",
+                resourceDesc3: "Expert discussions and code examples",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "Trading news and economic calendar",
+                resourceLink5: "TradingView Analysis",
+                resourceDesc5: "Technical analysis and trading ideas",
+                resourceLink6: "Babypips Trading Course",
+                resourceDesc6: "Free forex trading education"
+            },
+            pt: {
+                title: "Tutoriais do MetaTrader 5 (MT5)",
+                subtitle: "Plataforma de negociação abrangente para todos os mercados",
+                gettingStarted: "Começando com o MT5",
+                installation: "Instalação e Configuração",
+                basicNavigation: "Navegação Básica",
+                tradingFeatures: "Recursos de Negociação",
+                orderTypes: "Tipos de Ordens",
+                chartAnalysis: "Análise de Gráficos",
+                advancedFeatures: "Recursos Avançados",
+                expertAdvisors: "Assessores Especialistas (EA)",
+                customIndicators: "Indicadores Personalizados",
+                platformComparison: "Comparação de Plataformas",
+                educationalResources: "Recursos Educacionais",
+                // Content translations
+                downloadTitle: "Baixar MetaTrader 5",
+                downloadSteps: "Siga estas etapas para baixar e instalar o MetaTrader 5:",
+                step1Title: "Etapa 1: Visite o Site Oficial",
+                step1Desc: "Acesse o site oficial do MetaTrader 5 ou a página de download da plataforma da sua corretora.",
+                step2Title: "Etapa 2: Escolha sua Plataforma",
+                step2Desc: "Selecione a versão apropriada para seu sistema operacional (Windows/Mac).",
+                step2Note: "Observação: Usuários de Mac podem precisar de software adicional como Wine ou CrossOver para desempenho ideal.",
+                step3Title: "Etapa 3: Baixe e Instale",
+                step3Desc: "Execute o instalador e siga o assistente de configuração. Aceite o contrato de licença e escolha o local de instalação.",
+                downloadButton: "Baixar MetaTrader 5",
+                // Getting Started content
+                setupStep1Title: "Etapa 1: Configuração Inicial",
+                setupStep1Desc: "Após a instalação, inicie o MT5 e crie uma nova conta:",
+                setupStep1List1: "Clique em 'Arquivo' > 'Abrir uma Conta'",
+                setupStep1List2: "Escolha entre conta demo ou real",
+                setupStep1List3: "Preencha suas informações pessoais",
+                setupStep1List4: "Defina suas preferências de negociação",
+                setupStep2Title: "Etapa 2: Configuração da Plataforma",
+                setupStep2Desc: "Configure seu ambiente de negociação:",
+                setupStep2List1: "Defina seu idioma preferido (Ferramentas > Opções > Idioma)",
+                setupStep2List2: "Configure as configurações do gráfico (clique direito no gráfico > Propriedades)",
+                setupStep2List3: "Configure notificações (Ferramentas > Opções > Notificações)",
+                setupStep2List4: "Personalize a barra de ferramentas (clique direito na barra de ferramentas > Personalizar)",
+                // Navigation content
+                navStep1Title: "Etapa 1: Janela Market Watch",
+                navStep1Desc: "Acesse a janela Market Watch (Ctrl+M):",
+                navStep1List1: "Visualize os instrumentos de negociação disponíveis",
+                navStep1List2: "Adicione/remova símbolos da sua lista de observação",
+                navStep1List3: "Visualize preços de compra/venda e spreads",
+                navStep1List4: "Acesse propriedades e especificações de símbolos",
+                navStep2Title: "Etapa 2: Painel Navegador",
+                navStep2Desc: "Use o painel Navegador (Ctrl+N):",
+                navStep2List1: "Acesse suas contas de negociação",
+                navStep2List2: "Gerencie indicadores e Assessores Especialistas",
+                navStep2List3: "Acesse scripts e indicadores personalizados",
+                navStep2List4: "Visualize seu histórico de negociação",
+                // Trading Features content
+                tradingStep1Title: "Etapa 1: Ordens de Mercado",
+                tradingStep1Desc: "Executar ordens instantaneas:",
+                tradingStep1List1: "Clique em 'Nova Ordem' ou pressione F9",
+                tradingStep1List2: "Selecione seu instrumento de negociação",
+                tradingStep1List3: "Escolha o tamanho da ordem (lote)",
+                tradingStep1List4: "Defina o nível de Stop Loss e Take Profit",
+                tradingStep1List5: "Clique em 'Comprar' ou 'Vender' para executar",
+                tradingStep2Title: "Etapa 2: Ordens em Espera",
+                tradingStep2Desc: "Configurar ordens em espera:",
+                tradingStep2List1: "Selecionar tipo de 'Ordem em Espera'",
+                tradingStep2List2: "Escolher entre Buy Stop, Sell Stop, Buy Limit ou Sell Limit",
+                tradingStep2List3: "Definir preço de entrada",
+                tradingStep2List4: "Definir data de vencimento (opcional)",
+                tradingStep2List5: "Definir nível de Stop Loss e Take Profit",
+                // Chart Analysis content
+                chartStep1Title: "Etapa 1: Configuração do Gráfico",
+                chartStep1Desc: "Configurar os gráficos:",
+                chartStep1List1: "Selecionar o tipo de gráfico (Candlestick, Bar, Line)",
+                chartStep1List2: "Selecionar o timeframe (M1 a Mensal)",
+                chartStep1List3: "Adicionar indicadores técnicos",
+                chartStep1List4: "Personalizar a aparência do gráfico",
+                chartStep2Title: "Etapa 2: Análise Técnica",
+                chartStep2Desc: "Realizar análise técnica:",
+                chartStep2List1: "Adicionar indicadores de tendência (Médias Móveis, MACD)",
+                chartStep2List2: "Usar osciladores (RSI, Stochastic)",
+                chartStep2List3: "Aplicar ferramentas de Fibonacci",
+                chartStep2List4: "Desenhar níveis de suporte/resistência",
+                // Expert Advisors content
+                eaStep1Title: "Etapa 1: Instalação de EA",
+                eaStep1Desc: "Instalar e configurar EAs:",
+                eaStep1List1: "Copiar arquivos EA para a pasta Experts",
+                eaStep1List2: "Reiniciar MT5 ou atualizar o Navigator",
+                eaStep1List3: "Arrastar o EA para um gráfico",
+                eaStep1List4: "Configurar parâmetros e ajustes",
+                eaStep2Title: "Etapa 2: Teste de EA",
+                eaStep2Desc: "Testar os EAs:",
+                eaStep2List1: "Usar o Estrategista de Estratégias (Ctrl+R)",
+                eaStep2List2: "Selecionar o período de teste",
+                eaStep2List3: "Escolher o modo de teste (Cada tick, Pontos de controle)",
+                eaStep2List4: "Analisar os resultados dos testes",
+                // Custom Indicators content
+                indicatorStep1Title: "Etapa 1: Desenvolvimento do Indicador",
+                indicatorStep1Desc: "Criar indicadores personalizados:",
+                indicatorStep1List1: "Abrir MetaEditor (F4)",
+                indicatorStep1List2: "Criar um novo arquivo de indicador",
+                indicatorStep1List3: "Escrever o código do indicador em MQL5",
+                indicatorStep1List4: "Compilar e testar o indicador",
+                resourceLink1: "MC Markets Learning Center",
+                resourceDesc1: "Comprehensive trading education and market analysis",
+                resourceLink2: "MetaTrader 5 Official Documentation",
+                resourceDesc2: "Complete platform documentation and guides",
+                resourceLink3: "MQL5 Community Forum",
+                resourceDesc3: "Expert discussions and code examples",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "Trading news and economic calendar",
+                resourceLink5: "TradingView Analysis",
+                resourceDesc5: "Technical analysis and trading ideas",
+                resourceLink6: "Babypips Trading Course",
+                resourceDesc6: "Free forex trading education"
+            },
+            vi: {
+                title: "Hướng dẫn MetaTrader 5 (MT5)",
+                subtitle: "Nền tảng giao dịch toàn diện cho mọi thị trường",
+                gettingStarted: "Bắt đầu với MT5",
+                installation: "Cài đặt và Thiết lập",
+                basicNavigation: "Điều hướng Cơ bản",
+                tradingFeatures: "Tính năng Giao dịch",
+                orderTypes: "Các Loại Lệnh",
+                chartAnalysis: "Phân tích Biểu đồ",
+                advancedFeatures: "Tính năng Nâng cao",
+                expertAdvisors: "Cố vấn Chuyên gia (EA)",
+                customIndicators: "Chỉ báo Tùy chỉnh",
+                platformComparison: "So sánh Nền tảng",
+                educationalResources: "Tài nguyên Giáo dục",
+                // Content translations
+                downloadTitle: "Tải xuống MetaTrader 5",
+                downloadSteps: "Làm theo các bước sau để tải xuống và cài đặt MetaTrader 5:",
+                step1Title: "Bước 1: Truy cập Trang web Chính thức",
+                step1Desc: "Truy cập trang web chính thức của MetaTrader 5 hoặc trang tải xuống nền tảng của nhà môi giới của bạn.",
+                step2Title: "Bước 2: Chọn Nền tảng của Bạn",
+                step2Desc: "Chọn phiên bản phù hợp cho hệ điều hành của bạn (Windows/Mac).",
+                step2Note: "Lưu ý: Người dùng Mac có thể cần phần mềm bổ sung như Wine hoặc CrossOver để có hiệu suất tối ưu.",
+                step3Title: "Bước 3: Tải xuống và Cài đặt",
+                step3Desc: "Chạy trình cài đặt và làm theo hướng dẫn thiết lập. Chấp nhận thỏa thuận cấp phép và chọn vị trí cài đặt.",
+                downloadButton: "Tải xuống MetaTrader 5",
+                // Getting Started content
+                setupStep1Title: "Bước 1: Thiết lập Ban đầu",
+                setupStep1Desc: "Sau khi cài đặt, khởi chạy MT5 và tạo tài khoản mới:",
+                setupStep1List1: "'Tệp' > 'Mở Tài khoản' ấn",
+                setupStep1List2: "Chọn giữa tài khoản demo hoặc thực",
+                setupStep1List3: "Điền thông tin cá nhân của bạn",
+                setupStep1List4: "Đặt tùy chọn giao dịch của bạn",
+                setupStep2Title: "Bước 2: Cấu hình Nền tảng",
+                setupStep2Desc: "Cấu hình môi trường giao dịch của bạn:",
+                setupStep2List1: "Đặt ngôn ngữ ưa thích (Công cụ > Tùy chọn > Ngôn ngữ)",
+                setupStep2List2: "Cấu hình cài đặt biểu đồ (nhấp chuột phải vào biểu đồ > Thuộc tính)",
+                setupStep2List3: "Thiết lập thông báo (Công cụ > Tùy chọn > Thông báo)",
+                setupStep2List4: "Tùy chỉnh thanh công cụ (nhấp chuột phải vào thanh công cụ > Tùy chỉnh)",
+                // Navigation content
+                navStep1Title: "Bước 1: Cửa sổ Market Watch",
+                navStep1Desc: "Truy cập cửa sổ Market Watch (Ctrl+M):",
+                navStep1List1: "Xem các công cụ giao dịch có sẵn",
+                navStep1List2: "Thêm/xóa biểu tượng khỏi danh sách theo dõi của bạn",
+                navStep1List3: "Xem giá mua/bán và chênh lệch",
+                navStep1List4: "Truy cập thuộc tính và thông số kỹ thuật của biểu tượng",
+                navStep2Title: "Bước 2: Bảng Điều hướng",
+                navStep2Desc: "Sử dụng Bảng Điều hướng (Ctrl+N):",
+                navStep2List1: "Truy cập tài khoản giao dịch của bạn",
+                navStep2List2: "Quản lý chỉ báo và Cố vấn Chuyên gia",
+                navStep2List3: "Truy cập tập lệnh và chỉ báo tùy chỉnh",
+                navStep2List4: "Xem lịch sử giao dịch của bạn",
+                // Trading Features content
+                tradingStep1Title: "Bước 1: Đơn hàng Thị trường",
+                tradingStep1Desc: "Thực hiện đơn hàng ngay lập tức:",
+                tradingStep1List1: "Nhấp vào 'Đơn hàng mới' hoặc nhấn F9",
+                tradingStep1List2: "Chọn công cụ giao dịch của bạn",
+                tradingStep1List3: "Chọn kích thước đơn hàng (lô)",
+                tradingStep1List4: "Đặt mức Stop Loss và Take Profit",
+                tradingStep1List5: "Nhấp vào 'Mua' hoặc 'Bán' để thực hiện",
+                tradingStep2Title: "Bước 2: Đơn hàng Chờ",
+                tradingStep2Desc: "Đặt đơn hàng chờ:",
+                tradingStep2List1: "Chọn loại 'Đơn hàng chờ'",
+                tradingStep2List2: "Chọn giữa Buy Stop, Sell Stop, Buy Limit hoặc Sell Limit",
+                tradingStep2List3: "Đặt giá nhập",
+                tradingStep2List4: "Định nghĩa thời hạn hết hạn (tùy chọn)",
+                tradingStep2List5: "Đặt mức Stop Loss và Take Profit",
+                // Chart Analysis content
+                chartStep1Title: "Bước 1: Cấu hình Biểu đồ",
+                chartStep1Desc: "Cấu hình Biểu đồ:",
+                chartStep1List1: "Chọn loại Biểu đồ (Candlestick, Bar, Line)",
+                chartStep1List2: "Chọn khoảng thời gian (M1 đến Tháng)",
+                chartStep1List3: "Thêm chỉ báo kỹ thuật",
+                chartStep1List4: "Tùy chỉnh bề ngoài Biểu đồ",
+                chartStep2Title: "Bước 2: Phân tích Kỹ thuật",
+                chartStep2Desc: "Thực hiện phân tích kỹ thuật:",
+                chartStep2List1: "Thêm chỉ báo xu hướng (Moving Averages, MACD)",
+                chartStep2List2: "Sử dụng dao động (RSI, Stochastic)",
+                chartStep2List3: "Áp dụng công cụ Fibonacci",
+                chartStep2List4: "Vẽ các mức hỗ trợ/kháng cự",
+                // Expert Advisors content
+                eaStep1Title: "Bước 1: Cài đặt EA",
+                eaStep1Desc: "Cài đặt và cấu hình EAs:",
+                eaStep1List1: "Sao chép các tệp EA vào thư mục Experts",
+                eaStep1List2: "Khởi động lại MT5 hoặc cập nhật Navigator",
+                eaStep1List3: "Kéo EA vào biểu đồ",
+                eaStep1List4: "Cấu hình các tham số và cài đặt",
+                eaStep2Title: "Bước 2: Kiểm tra EA",
+                eaStep2Desc: "Kiểm tra các EAs:",
+                eaStep2List1: "Sử dụng Trình tự hành động (Ctrl+R)",
+                eaStep2List2: "Chọn khoảng thời gian kiểm tra",
+                eaStep2List3: "Chọn chế độ kiểm tra (Mỗi tick, Các điểm kiểm soát)",
+                eaStep2List4: "Phân tích kết quả kiểm tra",
+                // Custom Indicators content
+                indicatorStep1Title: "Bước 1: Phát triển chỉ báo",
+                indicatorStep1Desc: "Tạo chỉ báo tùy chỉnh:",
+                indicatorStep1List1: "Mở MetaEditor (F4)",
+                indicatorStep1List2: "Tạo một tệp chỉ báo mới",
+                indicatorStep1List3: "Viết mã chỉ báo trong MQL5",
+                indicatorStep1List4: "Biên dịch và kiểm tra chỉ báo",
+                resourceLink1: "MC Markets Learning Center",
+                resourceDesc1: "Comprehensive trading education and market analysis",
+                resourceLink2: "MetaTrader 5 Official Documentation",
+                resourceDesc2: "Complete platform documentation and guides",
+                resourceLink3: "MQL5 Community Forum",
+                resourceDesc3: "Expert discussions and code examples",
+                resourceLink4: "Forex Factory",
+                resourceDesc4: "Trading news and economic calendar",
+                resourceLink5: "TradingView Analysis",
+                resourceDesc5: "Technical analysis and trading ideas",
+                resourceLink6: "Babypips Trading Course",
+                resourceDesc6: "Free forex trading education"
+            }
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const languageButton = document.getElementById('language-button');
+            const languageLinks = document.querySelectorAll('.language-dropdown-content a');
+            
+            // Get saved language preference
+            const savedLanguage = localStorage.getItem('preferredLanguage') || 'en';
+            
+            // Set initial language
+            changeLanguage(savedLanguage);
+            updateLanguageButton(savedLanguage);
+
+            // Add click event listeners to language links
+            languageLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const lang = this.getAttribute('data-lang');
+                    changeLanguage(lang);
+                    updateLanguageButton(lang);
+                    // Save language preference
+                    localStorage.setItem('preferredLanguage', lang);
+                });
+            });
+        });
+
+        function updateLanguageButton(lang) {
+            const languageButton = document.getElementById('language-button');
+            if (languageButton) {
+                languageButton.textContent = languageNames[lang] || 'English';
+            }
+        }
+
+        function changeLanguage(lang) {
+            const translation = translations[lang];
+            if (!translation) return;
+
+            // Update all text content
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translation[key]) {
+                    element.textContent = translation[key];
+                }
+            });
+
+            // Update Chart Analysis section
+            const chartSection = document.querySelector('.chart-analysis');
+            if (chartSection) {
+                const step1Title = chartSection.querySelector('.step-title:nth-child(1)');
+                const step1Desc = chartSection.querySelector('.step-desc:nth-child(2)');
+                const step1List = chartSection.querySelector('.step-list:nth-child(3)');
+                const step2Title = chartSection.querySelector('.step-title:nth-child(4)');
+                const step2Desc = chartSection.querySelector('.step-desc:nth-child(5)');
+                const step2List = chartSection.querySelector('.step-list:nth-child(6)');
+
+                if (step1Title) step1Title.textContent = translation.chartStep1Title;
+                if (step1Desc) step1Desc.textContent = translation.chartStep1Desc;
+                if (step1List) {
+                    const items = step1List.querySelectorAll('li');
+                    if (items[0]) items[0].textContent = translation.chartStep1List1;
+                    if (items[1]) items[1].textContent = translation.chartStep1List2;
+                    if (items[2]) items[2].textContent = translation.chartStep1List3;
+                    if (items[3]) items[3].textContent = translation.chartStep1List4;
+                }
+
+                if (step2Title) step2Title.textContent = translation.chartStep2Title;
+                if (step2Desc) step2Desc.textContent = translation.chartStep2Desc;
+                if (step2List) {
+                    const items = step2List.querySelectorAll('li');
+                    if (items[0]) items[0].textContent = translation.chartStep2List1;
+                    if (items[1]) items[1].textContent = translation.chartStep2List2;
+                    if (items[2]) items[2].textContent = translation.chartStep2List3;
+                    if (items[3]) items[3].textContent = translation.chartStep2List4;
+                }
+            }
+
+            // Update Expert Advisors section
+            const eaSection = document.querySelector('.expert-advisors');
+            if (eaSection) {
+                const step1Title = eaSection.querySelector('.step-title:nth-child(1)');
+                const step1Desc = eaSection.querySelector('.step-desc:nth-child(2)');
+                const step1List = eaSection.querySelector('.step-list:nth-child(3)');
+                const step2Title = eaSection.querySelector('.step-title:nth-child(4)');
+                const step2Desc = eaSection.querySelector('.step-desc:nth-child(5)');
+                const step2List = eaSection.querySelector('.step-list:nth-child(6)');
+
+                if (step1Title) step1Title.textContent = translation.eaStep1Title;
+                if (step1Desc) step1Desc.textContent = translation.eaStep1Desc;
+                if (step1List) {
+                    const items = step1List.querySelectorAll('li');
+                    if (items[0]) items[0].textContent = translation.eaStep1List1;
+                    if (items[1]) items[1].textContent = translation.eaStep1List2;
+                    if (items[2]) items[2].textContent = translation.eaStep1List3;
+                    if (items[3]) items[3].textContent = translation.eaStep1List4;
+                }
+
+                if (step2Title) step2Title.textContent = translation.eaStep2Title;
+                if (step2Desc) step2Desc.textContent = translation.eaStep2Desc;
+                if (step2List) {
+                    const items = step2List.querySelectorAll('li');
+                    if (items[0]) items[0].textContent = translation.eaStep2List1;
+                    if (items[1]) items[1].textContent = translation.eaStep2List2;
+                    if (items[2]) items[2].textContent = translation.eaStep2List3;
+                    if (items[3]) items[3].textContent = translation.eaStep2List4;
+                }
+            }
+
+            // Update Custom Indicators section
+            const indicatorSection = document.querySelector('.custom-indicators');
+            if (indicatorSection) {
+                const step1Title = indicatorSection.querySelector('.step-title:nth-child(1)');
+                const step1Desc = indicatorSection.querySelector('.step-desc:nth-child(2)');
+                const step1List = indicatorSection.querySelector('.step-list:nth-child(3)');
+
+                if (step1Title) step1Title.textContent = translation.indicatorStep1Title;
+                if (step1Desc) step1Desc.textContent = translation.indicatorStep1Desc;
+                if (step1List) {
+                    const items = step1List.querySelectorAll('li');
+                    if (items[0]) items[0].textContent = translation.indicatorStep1List1;
+                    if (items[1]) items[1].textContent = translation.indicatorStep1List2;
+                    if (items[2]) items[2].textContent = translation.indicatorStep1List3;
+                    if (items[3]) items[3].textContent = translation.indicatorStep1List4;
+                }
+            }
+
+            // Update language button text
+            const langButton = document.querySelector('.language-button');
+            if (langButton) {
+                langButton.textContent = languageNames[lang];
+            }
+
+            // Save language preference
+            localStorage.setItem('preferredLanguage', lang);
+        }
+
+        // Restore language preference on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLanguage = localStorage.getItem('preferredLanguage');
+            if (savedLanguage) {
+                changeLanguage(savedLanguage);
+            }
+        });
+    </script>
+</body>
+</html> 
